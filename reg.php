@@ -1,3 +1,4 @@
+<?php require_once "autoload.php"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,38 +12,97 @@
 </head>
 <body>
 
+<?php
+
+
+// reg form ISSSET
+
+if(isset($_POST['add_product'])){
+	
+
+	$name = $_POST['name'];
+	$email = $_POST['email'];
+	$cell = $_POST['cell'];
+	$uname = $_POST['uname'];
+	$password = $_POST['password'];
+	$cpass = $_POST['cpass'];
+	$gender = NULL;
+
+	if(isset($_POST['gender'])){
+		$gender = $_POST['gender'];
+	}
+	// MAKE PASSWORD HASH
+
+		$hash_pass = makeHash($password);
+	 
+	//   validation
+
+	  if(empty($name) || empty($email) || empty($cell) || empty($uname) || empty($password) || empty($gender)){
+		$msg = validate('All fildes are required');
+
+	  }else if(emailCheck($email) == false){
+		$msg = validate('invalid email');
+		    
+	  }else if(cellCheck($cell) == false){
+		$msg = validate('invalid cell number');
+
+	  }else if(passCheck($password, $cpass) == false){
+		$msg = validate('password not match');
+
+	  }else{
+		create("INSERT INTO users (name, email, cell, uname, password, gender) VALUES ('$name', '$email', '$cell', '$uname', '$hash_pass', '$gender')");
+		$msg = validate('Your account created successfully', 'success');
+		formClean();
+	
+	  }
+
+	
+}
+
+?>
+
 	<div class="wrap shadow">
 		<div class="card">
 			<div class="card-body">
 				<h2>Create an Account</h2>
-				<form action="">
+				<?php
+				if (isset($msg)) {
+					echo $msg;
+				}
+				?>
+
+				<form action="" autocomplete="off" method="POST">
 					<div class="form-group">
 						<label for="">Name</label>
-						<input class="form-control" type="text">
+						<input name="name" class="form-control" type="text" value="<?php old('name'); ?>">
 					</div>
 					<div class="form-group">
 						<label for="">Email</label>
-						<input class="form-control" type="text">
+						<input name="email" class="form-control" type="text" value="<?php old('email'); ?>">
 					</div>
 					<div class="form-group">
 						<label for="">Cell</label>
-						<input class="form-control" type="text">
+						<input name="cell" class="form-control" type="text" value="<?php old('cell'); ?>">
 					</div>
 					<div class="form-group">
 						<label for="">Username</label>
-						<input class="form-control" type="text">
+						<input name="uname" class="form-control" type="text" value="<?php old('uname'); ?>">
 					</div>
 					<div class="form-group">
 						<label for="">Password</label>
-						<input class="form-control" type="password">
+						<input name="password" class="form-control" type="password">
+					</div>
+					<div class="form-group">
+						<label for="">Confirm Password</label>
+						<input name="cpass" class="form-control" type="password">
 					</div>
 					<div class="form-group">
 						<label for="">Gender</label><br>
-						<input class="" type="radio" id="Male"><label for="Male">Male</label>
-						<input class="" type="radio" id="Female"><label for="Female">Female</label>
+						<input name="gender" value="Male" class="" type="radio" id="Male"><label for="Male">Male</label>
+						<input name="gender" value="Female" class="" type="radio" id="Female"><label for="Female">Female</label>
 					</div>
 					<div class="form-group">
-						<input class="btn btn-primary" type="submit" value="Login">
+						<input name="add_product" class="btn btn-primary" type="submit" value="Sign UP">
 					</div>
 					<div class="form-group">
 						<a href="index.php">You have an account?</a>

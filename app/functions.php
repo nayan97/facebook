@@ -58,6 +58,15 @@ function cellcheck($cell)
     }
 }
 
+function passCheck($password, $cpass){
+    if($password === $cpass){  
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
 
 /**
  * Old data store
@@ -79,6 +88,13 @@ function formClean()
 {
     $_POST = '';
 }
+
+// make hash password
+
+function makeHash($password){
+    return password_hash($password, PASSWORD_DEFAULT);
+}
+
 
 /**
  * File Upload System 
@@ -129,7 +145,5 @@ function delete($table, $delete_id){
 
         $msg = validate('Student added successfully', 'success');
     }
-
-
 
 }
