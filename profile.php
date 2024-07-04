@@ -1,4 +1,16 @@
-<?php require_once "autoload.php"?>
+<?php 
+require_once "autoload.php";
+
+// check user login
+
+if( userLogin() == false){
+
+header("Location:index.php");
+
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,14 +54,23 @@
 						<li class="nav-item"><a class="nav-link" href="#">Friends</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Edit Profile</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"></a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+						<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</nav>
 	<section class="user-profile">
-		<img class="shadow" src="assets/media/img/pp_photo/pp-1.jpg" alt="">
+
+		<?php if($_SESSION['gender'] == 'Male' ):?>
+
+		<img class="shadow" src="assets/media/img/pp_photo/pp-1.webp" alt="">
+
+		<?php else :?>
+		<img class="shadow" src="assets/media/img/pp_photo/pp-2.jpg" alt="">
+		<?php endif;?>
+
+
 		<h3 class="text-center display-4 py-3"><?php echo $_SESSION['name']?></h3>
 
 		<div class="card shadow">

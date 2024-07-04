@@ -30,4 +30,15 @@ function password_varify($user_pass, $db_pass){
     
 }
 
+/**
+ * user login check
+ */
+function userLogin(){
+    if( isset($_SESSION['id'])){
+       return true; 
+    }else{
+       return false;
+    }
+}
+
 ?>

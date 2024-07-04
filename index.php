@@ -1,4 +1,14 @@
-<?php require_once "autoload.php"; ?>
+<?php require_once "autoload.php";
+
+// check user login
+
+if( userLogin() == true){
+
+	header("Location:profile.php");
+	
+	}
+	
+?>
 
 <!DOCTYPE html>
 <html lang="en">
