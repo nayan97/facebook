@@ -48,6 +48,15 @@ if(isset($_POST['add_product'])){
 
 	  }else if(passCheck($password, $cpass) == false){
 		$msg = validate('password not match');
+	  
+	  }else if(checkData('users', 'email', $email) == false){
+		$msg = validate('Your email address is allready exists', 'warning');
+
+	  }else if(checkData('users', 'cell', $cell) == false){
+		$msg = validate('Your phone number is allready exists', 'warning');
+
+	  }else if(checkData('users', 'uname', $uname) == false){
+		$msg = validate('Your user name is allready taken', 'warning');
 
 	  }else{
 		create("INSERT INTO users (name, email, cell, uname, password, gender) VALUES ('$name', '$email', '$cell', '$uname', '$hash_pass', '$gender')");

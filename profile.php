@@ -1,3 +1,5 @@
+<?php require_once "autoload.php"?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,38 +50,31 @@
 	</nav>
 	<section class="user-profile">
 		<img class="shadow" src="assets/media/img/pp_photo/pp-1.jpg" alt="">
-		<h3 class="text-center display-4 py-3">Nayan Islam</h3>
+		<h3 class="text-center display-4 py-3"><?php echo $_SESSION['name']?></h3>
 
 		<div class="card shadow">
 			<div class="card-body">
 				<table class="table table-striped">
 					<tr>
 						<td>Name</td>
-						<td>Nayan Islam</td>
+						<td><?php echo $_SESSION['name']?></td>
 					</tr>
 					<tr>
 						<td>Email</td>
-						<td>Nayan Islam</td>
+						<td><?php echo $_SESSION['email']?></td>
 					</tr><tr>
 						<td>Cell</td>
-						<td>Nayan Islam</td>
+						<td><?php echo $_SESSION['cell']?></td>
 					</tr>
 					<tr>
 						<td>Gender</td>
-						<td>Nayan Islam</td>
+						<td><?php echo $_SESSION['gender']?></td>
 					</tr>
 					<tr>
-						<td>Name</td>
-						<td>Nayan Islam</td>
+						<td>User Name</td>
+						<td><?php echo $_SESSION['uname']?></td>
 					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Nayan Islam</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Nayan Islam</td>
-					</tr>
+		
 			</div>
 		</div>
 	</section>
