@@ -7,6 +7,8 @@ if( userLogin() == false){
 
 header("Location:index.php");
 
+}else{
+	$pro_data = showLoginUser('users', $_SESSION['id']);
 }
 
 
@@ -21,53 +23,22 @@ header("Location:index.php");
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="assets/css/responsive.css">
-	<style>
-		* {
-			font-family: 'Poppins', sans-serif;
-}
-		.profile-menu {
-			background-color: #fff !important;
-			padding: 10px 0;
-		}
-		.user-profile {
-			width: 680px;
-			margin:50px auto 100px;
-		}
-		.user-profile img {
-			width: 250px;
-			height: 250px;
-			display: block;
-			margin: auto;
-			border: 10px solid #fff;
-			border-radius: 50%;
-		}
-	</style>
+
 </head>
 <body>     
-	
-	<nav class="profile-menu shadow">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 offset-1">
-					<ul class="nav nav-tab justify-content-center d-flex">
-						<li class="nav-item"><a class="nav-link" href="profile.php">My Profile</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Friends</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Edit Profile</a></li>
-						<li class="nav-item"><a class="nav-link" href="profilephoto.php">Edit Photo</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"></a></li>
-						<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</nav>
+	<!-- nav start here -->
+
+	    <?php require_once "templetes/menu.php" ?>
+
+	<!-- nav end here -->
+
 	<section class="user-profile">
 
-		<?php if ( isset($_SESSION['photo'])) : ?>
-			<img class="shadow" src="media/users/<?php echo $_SESSION['photo']; ?>" alt="">
-		<?php elseif ($_SESSION['gender'] == 'Male' ):?>
+		<?php if ( isset($pro_data -> photo)) : ?>
+			<img class="shadow" src="media/users/<?php echo $pro_data-> photo; ?>" alt="">
+		<?php elseif ($pro_data -> gender == 'Male' ):?>
 			<img class="shadow" src="assets/media/img/pp_photo/pp-1.webp" alt="">
-		<?php elseif ($_SESSION['gender'] == 'Female' ):?>
+		<?php elseif ($pro_data-> gender== 'Female' ):?>
 			<img class="shadow" src="assets/media/img/pp_photo/pp-2.jpg" alt="">
 		<?php endif;?>
 
@@ -79,22 +50,22 @@ header("Location:index.php");
 				<table class="table table-striped">
 					<tr>
 						<td>Name</td>
-						<td><?php echo $_SESSION['name']?></td>
+						<td><?php echo $pro_data -> name ?></td>
 					</tr>
 					<tr>
 						<td>Email</td>
-						<td><?php echo $_SESSION['email']?></td>
+						<td><?php echo $pro_data -> email ?></td>
 					</tr><tr>
-						<td>Cell</td>
-						<td><?php echo $_SESSION['cell']?></td>
+						<td>Cell</td> 
+						<td><?php echo $pro_data -> cell ?></td>
 					</tr>
 					<tr>
 						<td>Gender</td>
-						<td><?php echo $_SESSION['gender']?></td>
+						<td><?php echo $pro_data -> gender ?></td>
 					</tr>
 					<tr>
 						<td>User Name</td>
-						<td><?php echo $_SESSION['uname']?></td>
+						<td><?php echo $pro_data -> uname ?></td>
 					</tr>
 				</table>
 		

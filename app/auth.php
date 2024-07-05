@@ -41,4 +41,14 @@ function userLogin(){
     }
 }
 
+// login user data
+
+function showLoginUser($table, $id){
+ 
+    $data = connect() ->query("SELECT * FROM {$table} WHERE id='$id'");
+
+    return $data  -> fetch_object();
+
+}
+
 ?>
