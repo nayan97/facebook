@@ -33,7 +33,16 @@ function checkData($table, $col, $val){
     }else{
         return true;
     }
-
    
 }
+
+
+// edit data
+
+function update($sql){
+    connect()->query($sql);
+}
+
+
+
  

@@ -54,7 +54,6 @@ header("Location:index.php");
 						<li class="nav-item"><a class="nav-link" href="#">Friends</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Edit Profile</a></li>
 						<li class="nav-item"><a class="nav-link" href="profilephoto.php">Edit Photo</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"></a></li>
 						<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
 					</ul>
 				</div>
@@ -63,7 +62,7 @@ header("Location:index.php");
 	</nav>
 	<section class="user-profile">
 
-		<?php if ( isset($_SESSION['photo'])) : ?>
+		<?php if ( isset($_SESSION['photo']) !== NULL) : ?>
 			<img class="shadow" src="media/users/<?php echo $_SESSION['photo']; ?>" alt="">
 		<?php elseif ($_SESSION['gender'] == 'Male' ):?>
 			<img class="shadow" src="assets/media/img/pp_photo/pp-1.webp" alt="">
@@ -74,29 +73,30 @@ header("Location:index.php");
 
 		<h3 class="text-center display-4 py-3"><?php echo $_SESSION['name']?></h3>
 
+
+		<?php 
+		
+
+		if(isset($_POST['change'])){
+			$user_id = $_SESSION['id'];
+			$file = move($_FILES['photo'], 'media/users/');
+
+			update("UPDATE users SET photo='$file' WHERE id='$user_id'");
+
+			header("Location:profile.php");
+
+		}
+		
+		
+		?>
+
+
 		<div class="card shadow">
 			<div class="card-body">
-				<table class="table table-striped">
-					<tr>
-						<td>Name</td>
-						<td><?php echo $_SESSION['name']?></td>
-					</tr>
-					<tr>
-						<td>Email</td>
-						<td><?php echo $_SESSION['email']?></td>
-					</tr><tr>
-						<td>Cell</td>
-						<td><?php echo $_SESSION['cell']?></td>
-					</tr>
-					<tr>
-						<td>Gender</td>
-						<td><?php echo $_SESSION['gender']?></td>
-					</tr>
-					<tr>
-						<td>User Name</td>
-						<td><?php echo $_SESSION['uname']?></td>
-					</tr>
-				</table>
+				<form action="" method="POST" enctype="multipart/form-data">
+					<input type="file" name="photo">
+					<input type="submit" value="Upload" name="change">
+				</form>
 		
 			</div>
 		</div>

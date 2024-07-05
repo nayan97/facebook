@@ -44,6 +44,7 @@ if( userLogin() == true){
 							$_SESSION['cell'] = $login_user_data->cell;
 							$_SESSION['uname'] = $login_user_data->uname;
 							$_SESSION['gender'] = $login_user_data->gender;
+							$_SESSION['photo'] = $login_user_data->photo;
 
 
 							header('Location:profile.php');
