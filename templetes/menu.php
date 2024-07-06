@@ -30,6 +30,7 @@
 						<li class="nav-item"><a class="nav-link" href="friends.php">Friends</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Edit Profile</a></li>
 						<li class="nav-item"><a class="nav-link" href="profilephoto.php">Edit Photo</a></li>
+						<li class="nav-item"><a class="nav-link" href="password.php">Change Password</a></li>
 						<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
 					</ul>
 				</div>

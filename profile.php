@@ -8,7 +8,13 @@ if( userLogin() == false){
 header("Location:index.php");
 
 }else{
-	$pro_data = showLoginUser('users', $_SESSION['id']);
+	if (isset($_GET['user_id'])){
+
+		$pro_data = showLoginUser('users', $_GET['user_id']);
+	}else{
+
+		$pro_data = showLoginUser('users', $_SESSION['id']);
+	}
 }
 
 
@@ -43,7 +49,7 @@ header("Location:index.php");
 		<?php endif;?>
 
 
-		<h3 class="text-center display-4 py-3"><?php echo $_SESSION['name']?></h3>
+		<h3 class="text-center display-4 py-3"><?php echo $pro_data -> name ?></h3>
 
 		<div class="card shadow">
 			<div class="card-body">

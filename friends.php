@@ -53,7 +53,7 @@ header("Location:index.php");
 								<div class="card-body">
 									<img src="media/users/<?php echo $user -> photo ?>" alt="">
 									<h4><?php echo $user -> name ?></h4>
-									<button class="btn btn-primary btn-sm">View Profile</button>
+									<a href="profile.php?user_id=<?php echo $user->id;?>" class="btn btn-primary btn-sm">View Profile</a>
 								</div>
 							</div>
 						</div>
