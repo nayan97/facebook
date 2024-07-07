@@ -39,6 +39,8 @@ header("Location:index.php");
 	<!-- nav end here -->
 
 
+<section class="user-profile">
+
 	<?php
 
 
@@ -55,6 +57,7 @@ if(isset($_POST['update'])){
 	$age = $_POST['age'];
 	$gender = $_POST['gender'];
 	$user_id = $pro_data-> id;
+	$updated_at = date('Y-m-d H:m:s');
 
  
 	//   validation
@@ -69,24 +72,19 @@ if(isset($_POST['update'])){
 		$msg = validate('invalid cell number');
 
 	  }else{
-		update("UPDATE users SET name='$name', email='$email', cell='$cell', uname='$uname',gender='$gender', age='$age', edu='$edu' WHERE id='{$user_id}'");
-		
+		update("UPDATE users SET name='$name', email='$email', cell='$cell', uname='$uname',gender='$gender', age='$age', edu='$edu', updated_at='{$updated_at}' WHERE id='{$user_id}'");
+		setMsg('success','Successfully updated');
 		header('Location:edit.php');
-		$msg = validate('Your account updated successfully', 'success');
+	
 	
 	  }
-
+	
 	
 }
-
+showMsg('success')
 ?>
 
-	<section class="user-profile">
 
-
-
-
-		<h3 class="text-center display-4 py-3"><?php echo $pro_data -> name ?></h3>
 
 		<div class="card shadow">
 			<div class="card-body">

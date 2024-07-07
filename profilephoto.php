@@ -55,17 +55,18 @@ header("Location:index.php");
 			$user_id = $_SESSION['id'];
 			$file = move($_FILES['photo'], 'media/users/');
 
-			update("UPDATE users SET photo='$file' WHERE id='$user_id'");
-			
 			// photo vlidation
+						
+			if(empty($_FILES['photo']['name'])){
+				$msg = validate('please select a photo');
+			}else{
 
-			// if(empty($file)){
-			// 	$msg = validate('please select a photo');
-				
-			// 	header("Location:profilephoto.php");
-			// }
-
+			update("UPDATE users SET photo='$file' WHERE id='$user_id'");
 			header("Location:profile.php");
+
+			}
+
+	
 
 		}
 
